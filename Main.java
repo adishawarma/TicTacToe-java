@@ -29,6 +29,14 @@ class TicTacToe {
         board[row][column] = " O ";
     }
 
+    private boolean isValidMove(int row, int column) {
+        if ((row >= 0 && row < 3) && (column >= 0 && column < 3) && (board[row][column].equals(" - "))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 public class Main {
@@ -57,12 +65,6 @@ public class Main {
             }
 
         }
-
-        // tictactoe.printBoard();
-
-        // tictactoe.setStringX(row, column);
-        // // tictactoe.printBoard();
-        // tictactoe.printBoard();
 
         sc.close();
 
