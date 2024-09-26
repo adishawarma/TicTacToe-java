@@ -33,17 +33,18 @@ class TicTacToe {
     public boolean checkWin(int row, int column, String move) {
         int v = 3 * (row) + column;
         if ((v == 0) || (v == 2) || (v == 4) || (v == 6) || (v == 8)) {
-            if ((board[0][0] == move) && (board[1][1] == move) && (board[2][2] == move)) {
+            if ((board[0][0].equals(move)) && (board[1][1].equals(move)) && (board[2][2].equals(move))) {
                 return true;
-            } else if ((board[0][2] == move) && (board[1][1] == move) && (board[2][0] == move)) {
+            } else if ((board[0][2].equals(move)) && (board[1][1].equals(move)) && (board[2][0].equals(move))) {
                 return true;
             }
         }
 
-        if ((board[row][0] == board[row][1]) && (board[row][1] == board[row][2]) && (board[row][0] == move)) {
+        if ((board[row][0].equals(board[row][1])) && (board[row][1].equals(board[row][2]))
+                && (board[row][0].equals(move))) {
             return true;
-        } else if ((board[0][column] == board[1][column]) && (board[0][column] == board[2][column])
-                && (board[0][column] == move)) {
+        } else if ((board[0][column].equals(board[1][column])) && (board[0][column].equals(board[2][column]))
+                && (board[0][column].equals(move))) {
             return true;
         }
 
@@ -64,9 +65,16 @@ class TicTacToe {
                 row = sc.nextInt();
                 column = sc.nextInt();
                 if (isValidMove(row, column)) {
-                    setStringO(row, column);
-                    printBoard();
                     count--;
+                    setStringO(row, column);
+                    if (count <= 5) {
+                        if (checkWin(row, column, " O ")) {
+                            System.out.println("O has won the match");
+                            printBoard();
+                            break;
+                        }
+                    }
+                    printBoard();
                 } else {
                     System.out.println("Enter a valid move!");
                 }
@@ -75,9 +83,16 @@ class TicTacToe {
                 row = sc.nextInt();
                 column = sc.nextInt();
                 if (isValidMove(row, column)) {
-                    setStringX(row, column);
-                    printBoard();
                     count--;
+                    setStringX(row, column);
+                    if (count <= 5) {
+                        if (checkWin(row, column, " X ")) {
+                            System.out.println("X has won the match");
+                            printBoard();
+                            break;
+                        }
+                    }
+                    printBoard();
                 } else {
                     System.out.println("Enter a valid move!");
 
