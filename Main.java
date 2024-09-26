@@ -30,6 +30,27 @@ class TicTacToe {
         board[row][column] = " O ";
     }
 
+    public boolean checkWin(int row, int column, String move) {
+        int v = 3 * (row) + column;
+        if ((v == 0) || (v == 2) || (v == 4) || (v == 6) || (v == 8)) {
+            if ((board[0][0] == move) && (board[1][1] == move) && (board[2][2] == move)) {
+                return true;
+            } else if ((board[0][2] == move) && (board[1][1] == move) && (board[2][0] == move)) {
+                return true;
+            }
+        }
+
+        if ((board[row][0] == board[row][1]) && (board[row][1] == board[row][2]) && (board[row][0] == move)) {
+            return true;
+        } else if ((board[0][column] == board[1][column]) && (board[0][column] == board[2][column])
+                && (board[0][column] == move)) {
+            return true;
+        }
+
+        return false;
+
+    }
+
     public void startGame() {
         int count = 9;
         int row, column;
@@ -39,6 +60,7 @@ class TicTacToe {
         while (count > 0) {
 
             if (count % 2 == 0) {
+                System.out.println("Enter your move player O: ");
                 row = sc.nextInt();
                 column = sc.nextInt();
                 if (isValidMove(row, column)) {
@@ -49,6 +71,7 @@ class TicTacToe {
                     System.out.println("Enter a valid move!");
                 }
             } else if (count % 2 != 0) {
+                System.out.println("Enter your move player X: ");
                 row = sc.nextInt();
                 column = sc.nextInt();
                 if (isValidMove(row, column)) {
