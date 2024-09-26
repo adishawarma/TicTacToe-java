@@ -13,6 +13,14 @@ class TicTacToe {
         }
     }
 
+    public void resetBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = " - ";
+            }
+        }
+    }
+
     public void printBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -71,6 +79,14 @@ class TicTacToe {
                         if (checkWin(row, column, " O ")) {
                             System.out.println("O has won the match");
                             printBoard();
+                            System.out.print("Do you want to play again? (y/n) ");
+                            sc.nextLine();
+                            if (sc.nextLine().equals("y")) {
+                                count = 9;
+                                resetBoard();
+                                printBoard();
+                                continue;
+                            }
                             break;
                         }
                     }
@@ -89,6 +105,15 @@ class TicTacToe {
                         if (checkWin(row, column, " X ")) {
                             System.out.println("X has won the match");
                             printBoard();
+                            System.out.print("Do you want to play again? (y/n) ");
+                            sc.nextLine();
+                            if (sc.nextLine().equals("y")) {
+                                count = 9;
+                                resetBoard();
+                                printBoard();
+                                continue;
+                            }
+
                             break;
                         }
                     }
